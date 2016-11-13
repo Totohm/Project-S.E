@@ -1,0 +1,8 @@
+LIBRARY planar_plane_remover
+EXPORTS
+planar_plane_removerInitialize
+planar_plane_removerInitializeWithHandlers
+planar_plane_removerTerminate
+planar_plane_removerPrintStackTrace
+mlxPlanar_plane_remover
+
