@@ -1,0 +1,14 @@
+Imp : All these folders contains individual operation required for starting and building a 3D scanner step by step
+
+
+Step 1 : Interfacing kinect V2 with Qt
+
+Step 2 : Kinect Grabber - Saving Data / R200 Grabber
+
+Step 3 : Filter by depth
+
+Step 4 : ICP
+
+Step 5 : 3D Reconstruction
+
+Step 6 : 3D Model
