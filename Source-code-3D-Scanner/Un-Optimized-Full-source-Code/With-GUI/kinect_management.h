@@ -18,13 +18,6 @@ public:
     Kinect_Management();
 };
 
-
-
-
-
-
-
-
 namespace pcl
 {
     struct pcl::PointXYZ;
