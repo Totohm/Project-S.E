@@ -62,8 +62,12 @@ private slots:
 
     void on_openButton_2_clicked();
 
+    void on_captureButton_clicked();
+
 private:
     Ui::MainWindow *ui;
+
+
 };
 
 #endif // MAINWINDOW_H

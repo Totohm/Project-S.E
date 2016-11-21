@@ -8,15 +8,8 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    typedef pcl::PointXYZRGBA PointType;
 
     ui->setupUi(this);
-
-    // Retrieved Point Cloud Callback Function
-    boost::mutex mutex;
-
-    // Point Cloud
-     PointCloudT::Ptr cloud2;
 
     // Setup the cloud pointer
     cloud.reset (new PointCloudT);
@@ -63,62 +56,6 @@ MainWindow::MainWindow(QWidget *parent) :
     viewer->addPointCloud (cloud, "cloud");
     pSliderValueChanged (6);
     viewer->resetCamera ();
-    //viewer->setCameraPosition( 0.0, 0.0, -2.5, 0.0, 0.0, 0.0 );
-
-//    boost::function<void( const pcl::PointCloud<PointType>::ConstPtr& )> function =
-//        [&cloud2, &mutex]( const pcl::PointCloud<PointType>::ConstPtr& ptr ){
-//            boost::mutex::scoped_lock lock( mutex );
-
-//            /* Point Cloud Processing */
-
-//            cloud2 = ptr->makeShared();
-
-//        };
-
-//    // Kinect2Grabber
-//    boost::shared_ptr<pcl::Grabber> grabber = boost::make_shared<pcl::Kinect2Grabber>();
-
-//    // Register Callback Function
-//    boost::signals2::connection connection = grabber->registerCallback( function );
-
-//    // Start Grabber
-//    grabber->start();
-
-//    while( viewer->wasStopped() ){
-//        //Sleep(5000);
-//        // Update Viewer
-//        cloud=cloud2;
-//        viewer->spinOnce();
-//        ui->qvtkWidget->update ();
-
-//        boost::mutex::scoped_try_lock lock( mutex );
-//        if( lock.owns_lock() && cloud2 ){
-//            // Update Point Cloud
-//            pcl::PointCloud<PointType>::Ptr cloud_filtered (new pcl::PointCloud<PointType>);
-//            // Create the filtering object
-//            pcl::PassThrough<PointType> pass;
-//            pass.setFilterFieldName ("z");
-//            pass.setFilterLimits (0.5, 4.5);
-//            pass.setInputCloud (cloud2);
-//            pass.filter (*cloud_filtered);
-//            //std::cout<<filename<<std::endl;
-//            //pcl::io::savePLYFile(filename, *cloud_filtered);
-//            //Sleep(5000);
-
-//            if( !viewer->updatePointCloud( cloud_filtered, "cloud" ) ){
-//                viewer->addPointCloud( cloud_filtered, "cloud" );
-//                viewer->setPointCloudRenderingProperties (pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 3, "cloud");
-//            }
-//        }
-//    }
-
-//    // Stop Grabber
-//    grabber->stop();
-
-//    // Disconnect Callback Function
-//    if( connection.connected() ){
-//        connection.disconnect();
-//    }
 
 }
 
@@ -209,4 +146,74 @@ MainWindow::blueSliderValueChanged (int value)
 void MainWindow::on_openButton_2_clicked()
 {
 
+}
+
+void MainWindow::on_captureButton_clicked()
+{
+    typedef pcl::PointXYZRGBA PointType;
+
+    // Retrieved Point Cloud Callback Function
+    boost::mutex mutex;
+
+    // Point Cloud
+     PointCloudT::Ptr cloud2;
+
+    viewer->setCameraPosition( 0.0, 0.0, -2.5, 0.0, 0.0, 0.0 );
+
+    boost::function<void( const pcl::PointCloud<PointType>::ConstPtr& )> function =
+        [&cloud2, &mutex]( const pcl::PointCloud<PointType>::ConstPtr& ptr ){
+            boost::mutex::scoped_lock lock( mutex );
+
+            /* Point Cloud Processing */
+
+            cloud2 = ptr->makeShared();
+
+        };
+
+    // Kinect2Grabber
+    boost::shared_ptr<pcl::Grabber> grabber = boost::make_shared<pcl::Kinect2Grabber>();
+
+    // Register Callback Function
+    boost::signals2::connection connection = grabber->registerCallback( function );
+
+    // Start Grabber
+    grabber->start();
+    //!viewer->wasStopped()
+    while(true ){
+        //Sleep(5000);
+        // Update Viewer
+        //cloud=cloud2;
+        //viewer->spinOnce();
+        ui->qvtkWidget->update ();
+
+        boost::mutex::scoped_try_lock lock( mutex );
+        if( lock.owns_lock() && cloud2 ){
+            // Update Point Cloud
+            pcl::PointCloud<PointType>::Ptr cloud_filtered (new pcl::PointCloud<PointType>);
+            // Create the filtering object
+            pcl::PassThrough<PointType> pass;
+            pass.setFilterFieldName ("z");
+            pass.setFilterLimits (0.5, 4.5);
+            pass.setInputCloud (cloud2);
+            pass.filter (*cloud_filtered);
+            //std::cout<<filename<<std::endl;
+            //pcl::io::savePLYFile(filename, *cloud_filtered);
+            //Sleep(5000);
+
+            if( !viewer->updatePointCloud( cloud_filtered, "cloud" ) ){
+                viewer->addPointCloud( cloud_filtered, "cloud" );
+                viewer->setPointCloudRenderingProperties (pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 3, "cloud");
+            }
+        }
+
+        QCoreApplication::processEvents();
+    }
+
+    // Stop Grabber
+    grabber->stop();
+
+    // Disconnect Callback Function
+    if( connection.connected() ){
+        connection.disconnect();
+    }
 }
