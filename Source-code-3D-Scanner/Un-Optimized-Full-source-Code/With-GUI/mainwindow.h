@@ -29,45 +29,22 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-public slots:
-  void
-  randomButtonPressed ();
-
-  void
-  RGBsliderReleased ();
-
-  void
-  pSliderValueChanged (int value);
-
-  void
-  redSliderValueChanged (int value);
-
-  void
-  greenSliderValueChanged (int value);
-
-  void
-  blueSliderValueChanged (int value);
-
-protected:
-  PointCloudT::Ptr cloud;
-  boost::shared_ptr<pcl::visualization::PCLVisualizer> viewer;
-  pcl::PLYReader plyReader;
-
-  unsigned int red;
-  unsigned int green;
-  unsigned int blue;
-
-private slots:
     void on_openButton_clicked();
+private slots:
+    void on_actionOpen_triggered();
 
-    void on_openButton_2_clicked();
-
-    void on_captureButton_clicked();
+    void on_actionStart_capture_triggered();
 
 private:
+    PointCloudT::Ptr cloud;
+    boost::shared_ptr<pcl::visualization::PCLVisualizer> viewer;
+    pcl::PLYReader plyReader;
+
+    unsigned int red;
+    unsigned int green;
+    unsigned int blue;
+
     Ui::MainWindow *ui;
-
-
 };
 
 #endif // MAINWINDOW_H
