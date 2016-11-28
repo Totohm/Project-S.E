@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+
 #include "QFileDialog" //Menda
 
 #include "kinect_management.h"
@@ -8,7 +9,6 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-
     ui->setupUi(this);
 
     // Setup the cloud pointer
@@ -39,23 +39,25 @@ MainWindow::MainWindow(QWidget *parent) :
     viewer->setupInteractor (ui->qvtkWidget->GetInteractor (), ui->qvtkWidget->GetRenderWindow ());
     ui->qvtkWidget->update ();
 
-    // Connect "random" button and the function
-    connect (ui->pushButton_random,  SIGNAL (clicked ()), this, SLOT (randomButtonPressed ()));
+//    // Connect "random" button and the function
+//    connect (ui->pushButton_random,  SIGNAL (clicked ()), this, SLOT (randomButtonPressed ()));
 
-    // Connect R,G,B sliders and their functions
-    connect (ui->horizontalSlider_R, SIGNAL (valueChanged (int)), this, SLOT (redSliderValueChanged (int)));
-    connect (ui->horizontalSlider_G, SIGNAL (valueChanged (int)), this, SLOT (greenSliderValueChanged (int)));
-    connect (ui->horizontalSlider_B, SIGNAL (valueChanged (int)), this, SLOT (blueSliderValueChanged (int)));
-    connect (ui->horizontalSlider_R, SIGNAL (sliderReleased ()), this, SLOT (RGBsliderReleased ()));
-    connect (ui->horizontalSlider_G, SIGNAL (sliderReleased ()), this, SLOT (RGBsliderReleased ()));
-    connect (ui->horizontalSlider_B, SIGNAL (sliderReleased ()), this, SLOT (RGBsliderReleased ()));
+//    // Connect R,G,B sliders and their functions
+//    connect (ui->horizontalSlider_R, SIGNAL (valueChanged (int)), this, SLOT (redSliderValueChanged (int)));
+//    connect (ui->horizontalSlider_G, SIGNAL (valueChanged (int)), this, SLOT (greenSliderValueChanged (int)));
+//    connect (ui->horizontalSlider_B, SIGNAL (valueChanged (int)), this, SLOT (blueSliderValueChanged (int)));
+//    connect (ui->horizontalSlider_R, SIGNAL (sliderReleased ()), this, SLOT (RGBsliderReleased ()));
+//    connect (ui->horizontalSlider_G, SIGNAL (sliderReleased ()), this, SLOT (RGBsliderReleased ()));
+//    connect (ui->horizontalSlider_B, SIGNAL (sliderReleased ()), this, SLOT (RGBsliderReleased ()));
 
-    // Connect point size slider
-    connect (ui->horizontalSlider_p, SIGNAL (valueChanged (int)), this, SLOT (pSliderValueChanged (int)));
+//    // Connect point size slider
+//    connect (ui->horizontalSlider_p, SIGNAL (valueChanged (int)), this, SLOT (pSliderValueChanged (int)));
 
     viewer->addPointCloud (cloud, "cloud");
-    pSliderValueChanged (6);
+    //pSliderValueChanged (6);
     viewer->resetCamera ();
+    viewer->setPointCloudRenderingProperties (pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 6, "cloud");
+    ui->qvtkWidget->update ();
 
 }
 
@@ -65,6 +67,11 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::on_openButton_clicked()
+{
+
+
+}
+void MainWindow::on_actionOpen_triggered()
 {
     QString thefile = QFileDialog::getOpenFileName(this, tr("Open PCD file..."),"", tr("")); //Menda
     if(thefile.contains(".ply")){
@@ -81,74 +88,9 @@ void MainWindow::on_openButton_clicked()
 
     viewer->updatePointCloud (cloud, "cloud");
     ui->qvtkWidget->update ();
-
 }
 
-void
-MainWindow::randomButtonPressed ()
-{
-  printf ("Random button was pressed\n");
-
-  // Set the new color
-  for (size_t i = 0; i < cloud->size(); i++)
-  {
-    cloud->points[i].r = 255 *(1024 * rand () / (RAND_MAX + 1.0f));
-    cloud->points[i].g = 255 *(1024 * rand () / (RAND_MAX + 1.0f));
-    cloud->points[i].b = 255 *(1024 * rand () / (RAND_MAX + 1.0f));
-  }
-
-  viewer->updatePointCloud (cloud, "cloud");
-  ui->qvtkWidget->update ();
-}
-
-void
-MainWindow::RGBsliderReleased ()
-{
-  // Set the new color
-  for (size_t i = 0; i < cloud->size (); i++)
-  {
-    cloud->points[i].r = red;
-    cloud->points[i].g = green;
-    cloud->points[i].b = blue;
-  }
-  viewer->updatePointCloud (cloud, "cloud");
-  ui->qvtkWidget->update ();
-}
-
-void
-MainWindow::pSliderValueChanged (int value)
-{
-  viewer->setPointCloudRenderingProperties (pcl::visualization::PCL_VISUALIZER_POINT_SIZE, value, "cloud");
-  ui->qvtkWidget->update ();
-}
-
-void
-MainWindow::redSliderValueChanged (int value)
-{
-  red = value;
-  printf ("redSliderValueChanged: [%d|%d|%d]\n", red, green, blue);
-}
-
-void
-MainWindow::greenSliderValueChanged (int value)
-{
-  green = value;
-  printf ("greenSliderValueChanged: [%d|%d|%d]\n", red, green, blue);
-}
-
-void
-MainWindow::blueSliderValueChanged (int value)
-{
-  blue = value;
-  printf("blueSliderValueChanged: [%d|%d|%d]\n", red, green, blue);
-}
-
-void MainWindow::on_openButton_2_clicked()
-{
-
-}
-
-void MainWindow::on_captureButton_clicked()
+void MainWindow::on_actionStart_capture_triggered()
 {
     typedef pcl::PointXYZRGBA PointType;
 
