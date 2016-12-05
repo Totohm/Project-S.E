@@ -19,14 +19,12 @@
 #define RECONSTRUCTIONPROJECT_H
 
 #include <pcl/io/vtk_io.h>
-#include <pcl/visualization/pcl_visualizer.h>
+#include <pcl/visualization/pcl_visualizer.h> ///////////////////DELETE !
 #include <Windows.h>
 #include <pcl/point_types.h>
 #include <pcl/kdtree/kdtree.h>
 #include <pcl/search/kdtree.h>
-#include <iostream>
 #include <pcl/features/normal_3d.h>
-#include <pcl/surface/mls.h>
 #include <pcl/PCLPointCloud2.h>
 #include <pcl/surface/vtk_smoothing/vtk_mesh_smoothing_laplacian.h>
 #include <pcl/surface/poisson.h>
@@ -42,7 +40,7 @@ class ReconstructionProject
 
 public:
 
-    ReconstructionProject(); /////////////////////////////////////Parametric Constructor ???
+    ReconstructionProject();
 
     ~ReconstructionProject();
 

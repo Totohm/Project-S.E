@@ -1,21 +1,25 @@
 #include "reconstructionproject.h"
 
+//-----------------------------------------------------------------------------
+//*********************CONSTRUCTOR AND DESTRUCTOR******************************
+//-----------------------------------------------------------------------------
+
 ReconstructionProject::ReconstructionProject()
 {
 
     u_octree_depth = 10;
 
-    u_radius_search = 0.025;
+    u_radius_search = 0.25;
 
-    u_mu = 5;
+    u_mu = 10;
 
-    u_max_nearest_neighbor = 50;
+    u_max_nearest_neighbor = 20;
 
-    u_max_surface_angle = M_PI/4;
+    u_max_surface_angle = M_PI;
 
-    u_min_angle = M_PI/18;
+    u_min_angle = M_PI/10;
 
-    u_max_angle = 2*M_PI/3;
+    u_max_angle = M_PI;
 
     u_normal_consistency = false;
 }
@@ -25,7 +29,9 @@ ReconstructionProject::~ReconstructionProject()
 
 }
 
-
+//-----------------------------------------------------------------------------
+//***********************ACCESSORS AND MUTATORS********************************
+//-----------------------------------------------------------------------------
 
 unsigned int ReconstructionProject::getU_octree_depth() const
 {
@@ -107,6 +113,12 @@ void ReconstructionProject::setU_normal_consistency(bool value)
     u_normal_consistency = value;
 }
 
+//-----------------------------------------------------------------------------
+//*******************************BASIC FUNCTIONS*******************************
+//-----------------------------------------------------------------------------
+
+//******************************SMOOTHING FUNCTION*****************************
+
 /*pcl :: PointCloud<pcl :: PointXYZ >:: Ptr
 ReconstructionProject::smoothing
 (pcl :: PointCloud<pcl :: PointXYZ >:: Ptr)
@@ -114,6 +126,9 @@ ReconstructionProject::smoothing
 
 }
 */
+
+//***************************NORMAL ESTIMATION FUNCTION************************
+
 pcl :: PointCloud<pcl::PointNormal>::Ptr
 ReconstructionProject::normal_estimation
 (pcl :: PointCloud<pcl :: PointXYZ >:: Ptr input_point_cloud)
@@ -168,6 +183,8 @@ ReconstructionProject::normal_estimation
     return (t_output_point_cloud);
 }
 
+//***************************POISSON ALGORITHM*********************************
+
 boost :: shared_ptr<pcl :: PolygonMesh>
 ReconstructionProject::poisson_algorithm
 (pcl :: PointCloud<pcl::PointNormal>::Ptr input_point_cloud)
@@ -191,6 +208,8 @@ ReconstructionProject::poisson_algorithm
 
     return(t_triangles);
 }
+
+//****************************GREEDY TRIANGULATION*****************************
 
 boost :: shared_ptr<pcl :: PolygonMesh>
 ReconstructionProject::greedy_triangulation
@@ -225,28 +244,29 @@ ReconstructionProject::greedy_triangulation
 
 }
 
+//-----------------------------------------------------------------------------
+//*******************************CALLED FUNCTION*******************************
+//-----------------------------------------------------------------------------
+
 boost :: shared_ptr<pcl :: PolygonMesh>
 ReconstructionProject::reconstruction(bool method, bool smoothing)
 {
 
     if(smoothing == true)
     {
-
         //d_icp_pointcloud =   smoothing(d_icp_pointcloud); ////////////////////change by the variable from the database
-
-
     }
-
-    pcl :: PCLPointCloud2 cloudblob ; /////////////////////////////////////////////////DELETE !!!!
+    //*******************************TEST**************************************
+    pcl :: PCLPointCloud2 cloudblob ;
 
     pcl :: io :: loadPCDFile ( "C:\\Users\\dreve\\Documents\\VIBOT_LC\\Software Eng\\PCL Project\\PCLEXAMPLES\\untitled8\\chef.pcd" , cloudblob); ///////////////////DELETE !!!!
 
     pcl :: PointCloud<pcl::PointXYZ>::Ptr cloud (new pcl :: PointCloud<pcl ::PointXYZ>) ;
 
+    pcl ::fromPCLPointCloud2(cloudblob, *cloud);
+    //*****************************END TEST************************************
     pcl :: PointCloud<pcl::PointNormal>::Ptr t_output_point_cloud_normal_estimation
             (new pcl::PointCloud<pcl :: PointNormal >) ; ///////////////// should we delete the variable ?
-
-    pcl ::fromPCLPointCloud2(cloudblob, *cloud);
 
     t_output_point_cloud_normal_estimation = normal_estimation(cloud);
 
@@ -255,17 +275,12 @@ ReconstructionProject::reconstruction(bool method, bool smoothing)
 
     if(method == true)
     {
-
         t_output_recon =  poisson_algorithm(t_output_point_cloud_normal_estimation);
-
     }
-
     else
     {
-
         t_output_recon =  greedy_triangulation(t_output_point_cloud_normal_estimation);
     }
-
 
     return(t_output_recon);
 
