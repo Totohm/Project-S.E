@@ -3,10 +3,10 @@
  * All rights reserved.
  *
  *This class was created to achieve 3D Reconstruction, as part of a project to make a 3D Scanner. It
- *takes a registered point cloud as the input and outputs a watertight mesh which is suitable for
+ *takes a registered point cloud as the input and then outputs a watertight mesh which is suitable for
  *3D Printing.
  *
- *The 3D Reconstruction can be achieved by either of the two methods:
+ *The 3D Reconstruction can be achieved by either one of the two methods:
  *Poisson 3D Reconstruction or Greedy Reconstruction.
  *
  *The user can change the default parameters for the 3D Reconstruction method through the
@@ -125,7 +125,7 @@ private:
     //Create the variable to defined the maximum angle for a triangle
 
     bool u_normal_consistency;
-    //Create the variable to do something  -_-'             //////////////WARNING WE HAVE TO UNDERSTAND IT
+    //Create the variable to set a flag if the normals are oriented consistently
 
 protected:
 
