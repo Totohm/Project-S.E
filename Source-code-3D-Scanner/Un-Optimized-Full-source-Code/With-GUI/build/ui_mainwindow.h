@@ -14,19 +14,18 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QCheckBox>
+#include <QtWidgets/QDockWidget>
 #include <QtWidgets/QDoubleSpinBox>
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHeaderView>
-#include <QtWidgets/QLCDNumber>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
+#include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
-#include <QtWidgets/QPushButton>
-#include <QtWidgets/QSlider>
 #include <QtWidgets/QStatusBar>
-#include <QtWidgets/QTabWidget>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QToolButton>
+#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 #include "QVTKWidget.h"
 
@@ -36,154 +35,173 @@ class Ui_MainWindow
 {
 public:
     QAction *actionNew;
-    QAction *actionRange;
+    QAction *actionOpen;
+    QAction *actionSave;
+    QAction *actionStart_capture;
     QWidget *centralWidget;
-    QTabWidget *tabWidget;
-    QWidget *tab;
-    QGroupBox *groupBox_4;
-    QToolButton *newButton;
-    QToolButton *openButton;
-    QToolButton *openButton_2;
-    QGroupBox *groupBox_5;
-    QToolButton *openButton_3;
-    QWidget *tab_2;
-    QGroupBox *groupBox;
-    QDoubleSpinBox *xRange;
-    QLabel *label;
-    QLabel *label_2;
-    QDoubleSpinBox *yRange;
-    QDoubleSpinBox *zRange;
-    QLabel *label_3;
-    QGroupBox *groupBox_3;
-    QCheckBox *checkBox;
-    QCheckBox *checkBox_2;
-    QCheckBox *checkBox_3;
-    QWidget *tab_3;
-    QGroupBox *groupBox_2;
-    QToolButton *newButton_3;
-    QToolButton *newButton_2;
-    QToolButton *newButton_4;
-    QToolButton *newButton_5;
-    QSlider *horizontalSlider_p;
-    QLabel *label_4;
-    QLabel *label_5;
-    QLCDNumber *lcdNumber_G;
-    QLabel *label_6;
-    QSlider *horizontalSlider_R;
-    QSlider *horizontalSlider_G;
-    QPushButton *pushButton_random;
-    QLCDNumber *lcdNumber_B;
-    QSlider *horizontalSlider_B;
-    QLCDNumber *lcdNumber_p;
-    QLCDNumber *lcdNumber_R;
-    QLabel *label_7;
+    QVBoxLayout *verticalLayout_2;
+    QVBoxLayout *verticalLayout;
+    QWidget *widget;
+    QVBoxLayout *verticalLayout_5;
     QVTKWidget *qvtkWidget;
+    QMenuBar *menuBar;
+    QMenu *menuFile;
+    QMenu *menuEdit;
+    QMenu *menuView;
+    QMenu *menuWindow;
+    QMenu *menuHelp;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
-    QMenuBar *menuBar;
+    QDockWidget *dockWidget;
+    QWidget *dockWidgetContents;
+    QVBoxLayout *verticalLayout_4;
+    QVBoxLayout *verticalLayout_3;
+    QWidget *widget_5;
+    QToolButton *newButton_3;
+    QWidget *widget_2;
+    QToolButton *newButton_2;
+    QWidget *widget_3;
+    QToolButton *newButton_4;
+    QWidget *widget_4;
+    QToolButton *newButton_5;
+    QDockWidget *dockWidget_4;
+    QWidget *dockWidgetContents_8;
+    QGroupBox *groupBox_5;
+    QDoubleSpinBox *xRange_3;
+    QLabel *label_7;
+    QLabel *label_8;
+    QDoubleSpinBox *yRange_3;
+    QDoubleSpinBox *zRange_3;
+    QLabel *label_9;
+    QGroupBox *groupBox_6;
+    QCheckBox *checkBox_7;
+    QCheckBox *checkBox_8;
+    QCheckBox *checkBox_9;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(991, 739);
+        MainWindow->resize(702, 643);
+        QPalette palette;
+        QBrush brush(QColor(255, 255, 255, 255));
+        brush.setStyle(Qt::SolidPattern);
+        palette.setBrush(QPalette::Active, QPalette::WindowText, brush);
+        QBrush brush1(QColor(176, 176, 176, 255));
+        brush1.setStyle(Qt::SolidPattern);
+        palette.setBrush(QPalette::Active, QPalette::Button, brush1);
+        palette.setBrush(QPalette::Active, QPalette::Text, brush);
+        palette.setBrush(QPalette::Active, QPalette::Base, brush);
+        QBrush brush2(QColor(95, 95, 95, 255));
+        brush2.setStyle(Qt::SolidPattern);
+        palette.setBrush(QPalette::Active, QPalette::Window, brush2);
+        palette.setBrush(QPalette::Inactive, QPalette::WindowText, brush);
+        palette.setBrush(QPalette::Inactive, QPalette::Button, brush1);
+        palette.setBrush(QPalette::Inactive, QPalette::Text, brush);
+        palette.setBrush(QPalette::Inactive, QPalette::Base, brush);
+        palette.setBrush(QPalette::Inactive, QPalette::Window, brush2);
+        QBrush brush3(QColor(120, 120, 120, 255));
+        brush3.setStyle(Qt::SolidPattern);
+        palette.setBrush(QPalette::Disabled, QPalette::WindowText, brush3);
+        palette.setBrush(QPalette::Disabled, QPalette::Button, brush1);
+        palette.setBrush(QPalette::Disabled, QPalette::Text, brush3);
+        palette.setBrush(QPalette::Disabled, QPalette::Base, brush2);
+        palette.setBrush(QPalette::Disabled, QPalette::Window, brush2);
+        MainWindow->setPalette(palette);
         actionNew = new QAction(MainWindow);
         actionNew->setObjectName(QStringLiteral("actionNew"));
-        actionRange = new QAction(MainWindow);
-        actionRange->setObjectName(QStringLiteral("actionRange"));
-        centralWidget = new QWidget(MainWindow);
-        centralWidget->setObjectName(QStringLiteral("centralWidget"));
-        tabWidget = new QTabWidget(centralWidget);
-        tabWidget->setObjectName(QStringLiteral("tabWidget"));
-        tabWidget->setGeometry(QRect(20, 10, 911, 181));
-        tab = new QWidget();
-        tab->setObjectName(QStringLiteral("tab"));
-        groupBox_4 = new QGroupBox(tab);
-        groupBox_4->setObjectName(QStringLiteral("groupBox_4"));
-        groupBox_4->setGeometry(QRect(10, 10, 281, 131));
-        newButton = new QToolButton(groupBox_4);
-        newButton->setObjectName(QStringLiteral("newButton"));
-        newButton->setGeometry(QRect(10, 30, 81, 91));
         QIcon icon;
         icon.addFile(QStringLiteral(":/images/images/1476926247_New.png"), QSize(), QIcon::Normal, QIcon::Off);
-        newButton->setIcon(icon);
-        newButton->setIconSize(QSize(60, 60));
-        newButton->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
-        openButton = new QToolButton(groupBox_4);
-        openButton->setObjectName(QStringLiteral("openButton"));
-        openButton->setGeometry(QRect(100, 30, 81, 91));
+        actionNew->setIcon(icon);
+        actionOpen = new QAction(MainWindow);
+        actionOpen->setObjectName(QStringLiteral("actionOpen"));
         QIcon icon1;
         icon1.addFile(QStringLiteral(":/images/images/1476926622_Open.png"), QSize(), QIcon::Normal, QIcon::Off);
-        openButton->setIcon(icon1);
-        openButton->setIconSize(QSize(60, 60));
-        openButton->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
-        openButton_2 = new QToolButton(groupBox_4);
-        openButton_2->setObjectName(QStringLiteral("openButton_2"));
-        openButton_2->setGeometry(QRect(190, 30, 81, 91));
+        actionOpen->setIcon(icon1);
+        actionSave = new QAction(MainWindow);
+        actionSave->setObjectName(QStringLiteral("actionSave"));
         QIcon icon2;
         icon2.addFile(QStringLiteral(":/images/images/1476926747_floppy_disk_save.png"), QSize(), QIcon::Normal, QIcon::Off);
-        openButton_2->setIcon(icon2);
-        openButton_2->setIconSize(QSize(60, 60));
-        openButton_2->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
-        groupBox_5 = new QGroupBox(tab);
-        groupBox_5->setObjectName(QStringLiteral("groupBox_5"));
-        groupBox_5->setGeometry(QRect(310, 10, 261, 131));
-        openButton_3 = new QToolButton(groupBox_5);
-        openButton_3->setObjectName(QStringLiteral("openButton_3"));
-        openButton_3->setGeometry(QRect(10, 30, 81, 91));
+        actionSave->setIcon(icon2);
+        actionStart_capture = new QAction(MainWindow);
+        actionStart_capture->setObjectName(QStringLiteral("actionStart_capture"));
+        actionStart_capture->setCheckable(true);
         QIcon icon3;
         icon3.addFile(QStringLiteral(":/images/images/1476958047_player_record.png"), QSize(), QIcon::Normal, QIcon::Off);
-        openButton_3->setIcon(icon3);
-        openButton_3->setIconSize(QSize(60, 60));
-        openButton_3->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
-        tabWidget->addTab(tab, QString());
-        tab_2 = new QWidget();
-        tab_2->setObjectName(QStringLiteral("tab_2"));
-        groupBox = new QGroupBox(tab_2);
-        groupBox->setObjectName(QStringLiteral("groupBox"));
-        groupBox->setGeometry(QRect(10, 10, 141, 131));
-        xRange = new QDoubleSpinBox(groupBox);
-        xRange->setObjectName(QStringLiteral("xRange"));
-        xRange->setGeometry(QRect(70, 30, 62, 22));
-        label = new QLabel(groupBox);
-        label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(10, 30, 41, 20));
-        label->setLayoutDirection(Qt::LeftToRight);
-        label_2 = new QLabel(groupBox);
-        label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setGeometry(QRect(10, 60, 41, 20));
-        label_2->setLayoutDirection(Qt::LeftToRight);
-        yRange = new QDoubleSpinBox(groupBox);
-        yRange->setObjectName(QStringLiteral("yRange"));
-        yRange->setGeometry(QRect(70, 60, 62, 22));
-        zRange = new QDoubleSpinBox(groupBox);
-        zRange->setObjectName(QStringLiteral("zRange"));
-        zRange->setGeometry(QRect(70, 90, 62, 22));
-        label_3 = new QLabel(groupBox);
-        label_3->setObjectName(QStringLiteral("label_3"));
-        label_3->setGeometry(QRect(10, 90, 41, 20));
-        label_3->setLayoutDirection(Qt::LeftToRight);
-        groupBox_3 = new QGroupBox(tab_2);
-        groupBox_3->setObjectName(QStringLiteral("groupBox_3"));
-        groupBox_3->setGeometry(QRect(170, 10, 141, 131));
-        checkBox = new QCheckBox(groupBox_3);
-        checkBox->setObjectName(QStringLiteral("checkBox"));
-        checkBox->setGeometry(QRect(10, 30, 111, 20));
-        checkBox_2 = new QCheckBox(groupBox_3);
-        checkBox_2->setObjectName(QStringLiteral("checkBox_2"));
-        checkBox_2->setGeometry(QRect(10, 90, 111, 20));
-        checkBox_3 = new QCheckBox(groupBox_3);
-        checkBox_3->setObjectName(QStringLiteral("checkBox_3"));
-        checkBox_3->setGeometry(QRect(10, 60, 111, 20));
-        tabWidget->addTab(tab_2, QString());
-        tab_3 = new QWidget();
-        tab_3->setObjectName(QStringLiteral("tab_3"));
-        groupBox_2 = new QGroupBox(tab_3);
-        groupBox_2->setObjectName(QStringLiteral("groupBox_2"));
-        groupBox_2->setGeometry(QRect(10, 10, 411, 131));
-        newButton_3 = new QToolButton(groupBox_2);
+        actionStart_capture->setIcon(icon3);
+        centralWidget = new QWidget(MainWindow);
+        centralWidget->setObjectName(QStringLiteral("centralWidget"));
+        verticalLayout_2 = new QVBoxLayout(centralWidget);
+        verticalLayout_2->setSpacing(6);
+        verticalLayout_2->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
+        verticalLayout = new QVBoxLayout();
+        verticalLayout->setSpacing(6);
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        widget = new QWidget(centralWidget);
+        widget->setObjectName(QStringLiteral("widget"));
+        verticalLayout_5 = new QVBoxLayout(widget);
+        verticalLayout_5->setSpacing(6);
+        verticalLayout_5->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
+        qvtkWidget = new QVTKWidget(widget);
+        qvtkWidget->setObjectName(QStringLiteral("qvtkWidget"));
+        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(qvtkWidget->sizePolicy().hasHeightForWidth());
+        qvtkWidget->setSizePolicy(sizePolicy);
+
+        verticalLayout_5->addWidget(qvtkWidget);
+
+
+        verticalLayout->addWidget(widget);
+
+
+        verticalLayout_2->addLayout(verticalLayout);
+
+        MainWindow->setCentralWidget(centralWidget);
+        menuBar = new QMenuBar(MainWindow);
+        menuBar->setObjectName(QStringLiteral("menuBar"));
+        menuBar->setGeometry(QRect(0, 0, 702, 21));
+        menuFile = new QMenu(menuBar);
+        menuFile->setObjectName(QStringLiteral("menuFile"));
+        menuEdit = new QMenu(menuBar);
+        menuEdit->setObjectName(QStringLiteral("menuEdit"));
+        menuView = new QMenu(menuBar);
+        menuView->setObjectName(QStringLiteral("menuView"));
+        menuWindow = new QMenu(menuBar);
+        menuWindow->setObjectName(QStringLiteral("menuWindow"));
+        menuHelp = new QMenu(menuBar);
+        menuHelp->setObjectName(QStringLiteral("menuHelp"));
+        MainWindow->setMenuBar(menuBar);
+        mainToolBar = new QToolBar(MainWindow);
+        mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
+        MainWindow->addToolBar(Qt::TopToolBarArea, mainToolBar);
+        statusBar = new QStatusBar(MainWindow);
+        statusBar->setObjectName(QStringLiteral("statusBar"));
+        MainWindow->setStatusBar(statusBar);
+        dockWidget = new QDockWidget(MainWindow);
+        dockWidget->setObjectName(QStringLiteral("dockWidget"));
+        dockWidgetContents = new QWidget();
+        dockWidgetContents->setObjectName(QStringLiteral("dockWidgetContents"));
+        verticalLayout_4 = new QVBoxLayout(dockWidgetContents);
+        verticalLayout_4->setSpacing(6);
+        verticalLayout_4->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
+        verticalLayout_3 = new QVBoxLayout();
+        verticalLayout_3->setSpacing(6);
+        verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
+        widget_5 = new QWidget(dockWidgetContents);
+        widget_5->setObjectName(QStringLiteral("widget_5"));
+        newButton_3 = new QToolButton(widget_5);
         newButton_3->setObjectName(QStringLiteral("newButton_3"));
-        newButton_3->setGeometry(QRect(280, 30, 81, 91));
+        newButton_3->setGeometry(QRect(10, 10, 81, 91));
+        QSizePolicy sizePolicy1(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(newButton_3->sizePolicy().hasHeightForWidth());
+        newButton_3->setSizePolicy(sizePolicy1);
         QIcon icon4;
         icon4.addFile(QStringLiteral(":/images/images/1476928535_sign-emergency-code-sos_50.png"), QSize(), QIcon::Normal, QIcon::Off);
         newButton_3->setIcon(icon4);
@@ -191,9 +209,14 @@ public:
         newButton_3->setCheckable(true);
         newButton_3->setPopupMode(QToolButton::DelayedPopup);
         newButton_3->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
-        newButton_2 = new QToolButton(groupBox_2);
+
+        verticalLayout_3->addWidget(widget_5);
+
+        widget_2 = new QWidget(dockWidgetContents);
+        widget_2->setObjectName(QStringLiteral("widget_2"));
+        newButton_2 = new QToolButton(widget_2);
         newButton_2->setObjectName(QStringLiteral("newButton_2"));
-        newButton_2->setGeometry(QRect(10, 30, 81, 91));
+        newButton_2->setGeometry(QRect(10, 10, 81, 91));
         QIcon icon5;
         icon5.addFile(QStringLiteral(":/images/images/points.png"), QSize(), QIcon::Normal, QIcon::Off);
         newButton_2->setIcon(icon5);
@@ -201,9 +224,14 @@ public:
         newButton_2->setCheckable(true);
         newButton_2->setPopupMode(QToolButton::DelayedPopup);
         newButton_2->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
-        newButton_4 = new QToolButton(groupBox_2);
+
+        verticalLayout_3->addWidget(widget_2);
+
+        widget_3 = new QWidget(dockWidgetContents);
+        widget_3->setObjectName(QStringLiteral("widget_3"));
+        newButton_4 = new QToolButton(widget_3);
         newButton_4->setObjectName(QStringLiteral("newButton_4"));
-        newButton_4->setGeometry(QRect(100, 30, 81, 91));
+        newButton_4->setGeometry(QRect(10, 10, 81, 91));
         QIcon icon6;
         icon6.addFile(QStringLiteral(":/images/images/3dfig.png"), QSize(), QIcon::Normal, QIcon::Off);
         newButton_4->setIcon(icon6);
@@ -211,9 +239,14 @@ public:
         newButton_4->setCheckable(true);
         newButton_4->setPopupMode(QToolButton::DelayedPopup);
         newButton_4->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
-        newButton_5 = new QToolButton(groupBox_2);
+
+        verticalLayout_3->addWidget(widget_3);
+
+        widget_4 = new QWidget(dockWidgetContents);
+        widget_4->setObjectName(QStringLiteral("widget_4"));
+        newButton_5 = new QToolButton(widget_4);
         newButton_5->setObjectName(QStringLiteral("newButton_5"));
-        newButton_5->setGeometry(QRect(190, 30, 81, 91));
+        newButton_5->setGeometry(QRect(10, 10, 81, 91));
         QIcon icon7;
         icon7.addFile(QStringLiteral(":/images/images/3dfig_color.png"), QSize(), QIcon::Normal, QIcon::Off);
         newButton_5->setIcon(icon7);
@@ -221,99 +254,69 @@ public:
         newButton_5->setCheckable(true);
         newButton_5->setPopupMode(QToolButton::DelayedPopup);
         newButton_5->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
-        tabWidget->addTab(tab_3, QString());
-        horizontalSlider_p = new QSlider(centralWidget);
-        horizontalSlider_p->setObjectName(QStringLiteral("horizontalSlider_p"));
-        horizontalSlider_p->setGeometry(QRect(20, 510, 160, 29));
-        horizontalSlider_p->setMinimum(1);
-        horizontalSlider_p->setMaximum(6);
-        horizontalSlider_p->setValue(2);
-        horizontalSlider_p->setOrientation(Qt::Horizontal);
-        label_4 = new QLabel(centralWidget);
-        label_4->setObjectName(QStringLiteral("label_4"));
-        label_4->setGeometry(QRect(20, 290, 191, 31));
-        QFont font;
-        font.setPointSize(16);
-        font.setBold(false);
-        font.setItalic(false);
-        font.setWeight(50);
-        label_4->setFont(font);
-        label_5 = new QLabel(centralWidget);
-        label_5->setObjectName(QStringLiteral("label_5"));
-        label_5->setGeometry(QRect(20, 470, 141, 31));
-        label_5->setFont(font);
-        lcdNumber_G = new QLCDNumber(centralWidget);
-        lcdNumber_G->setObjectName(QStringLiteral("lcdNumber_G"));
-        lcdNumber_G->setGeometry(QRect(190, 320, 81, 41));
-        lcdNumber_G->setDigitCount(3);
-        lcdNumber_G->setSegmentStyle(QLCDNumber::Flat);
-        lcdNumber_G->setProperty("intValue", QVariant(128));
-        label_6 = new QLabel(centralWidget);
-        label_6->setObjectName(QStringLiteral("label_6"));
-        label_6->setGeometry(QRect(20, 210, 191, 31));
-        label_6->setFont(font);
-        horizontalSlider_R = new QSlider(centralWidget);
-        horizontalSlider_R->setObjectName(QStringLiteral("horizontalSlider_R"));
-        horizontalSlider_R->setGeometry(QRect(20, 250, 160, 29));
-        horizontalSlider_R->setMaximum(255);
-        horizontalSlider_R->setValue(128);
-        horizontalSlider_R->setOrientation(Qt::Horizontal);
-        horizontalSlider_G = new QSlider(centralWidget);
-        horizontalSlider_G->setObjectName(QStringLiteral("horizontalSlider_G"));
-        horizontalSlider_G->setGeometry(QRect(20, 330, 160, 29));
-        horizontalSlider_G->setMaximum(255);
-        horizontalSlider_G->setValue(128);
-        horizontalSlider_G->setOrientation(Qt::Horizontal);
-        pushButton_random = new QPushButton(centralWidget);
-        pushButton_random->setObjectName(QStringLiteral("pushButton_random"));
-        pushButton_random->setGeometry(QRect(30, 560, 201, 81));
-        lcdNumber_B = new QLCDNumber(centralWidget);
-        lcdNumber_B->setObjectName(QStringLiteral("lcdNumber_B"));
-        lcdNumber_B->setGeometry(QRect(190, 400, 81, 41));
-        lcdNumber_B->setDigitCount(3);
-        lcdNumber_B->setSegmentStyle(QLCDNumber::Flat);
-        lcdNumber_B->setProperty("intValue", QVariant(128));
-        horizontalSlider_B = new QSlider(centralWidget);
-        horizontalSlider_B->setObjectName(QStringLiteral("horizontalSlider_B"));
-        horizontalSlider_B->setGeometry(QRect(20, 410, 160, 29));
-        horizontalSlider_B->setMaximum(255);
-        horizontalSlider_B->setValue(128);
-        horizontalSlider_B->setOrientation(Qt::Horizontal);
-        lcdNumber_p = new QLCDNumber(centralWidget);
-        lcdNumber_p->setObjectName(QStringLiteral("lcdNumber_p"));
-        lcdNumber_p->setGeometry(QRect(190, 500, 81, 41));
-        lcdNumber_p->setDigitCount(1);
-        lcdNumber_p->setSegmentStyle(QLCDNumber::Flat);
-        lcdNumber_p->setProperty("intValue", QVariant(2));
-        lcdNumber_R = new QLCDNumber(centralWidget);
-        lcdNumber_R->setObjectName(QStringLiteral("lcdNumber_R"));
-        lcdNumber_R->setGeometry(QRect(190, 240, 81, 41));
-        lcdNumber_R->setDigitCount(3);
-        lcdNumber_R->setSegmentStyle(QLCDNumber::Flat);
-        lcdNumber_R->setProperty("intValue", QVariant(128));
-        label_7 = new QLabel(centralWidget);
+
+        verticalLayout_3->addWidget(widget_4);
+
+
+        verticalLayout_4->addLayout(verticalLayout_3);
+
+        dockWidget->setWidget(dockWidgetContents);
+        MainWindow->addDockWidget(static_cast<Qt::DockWidgetArea>(1), dockWidget);
+        dockWidget_4 = new QDockWidget(MainWindow);
+        dockWidget_4->setObjectName(QStringLiteral("dockWidget_4"));
+        dockWidgetContents_8 = new QWidget();
+        dockWidgetContents_8->setObjectName(QStringLiteral("dockWidgetContents_8"));
+        groupBox_5 = new QGroupBox(dockWidgetContents_8);
+        groupBox_5->setObjectName(QStringLiteral("groupBox_5"));
+        groupBox_5->setGeometry(QRect(10, 0, 281, 61));
+        xRange_3 = new QDoubleSpinBox(groupBox_5);
+        xRange_3->setObjectName(QStringLiteral("xRange_3"));
+        xRange_3->setGeometry(QRect(30, 30, 62, 22));
+        label_7 = new QLabel(groupBox_5);
         label_7->setObjectName(QStringLiteral("label_7"));
-        label_7->setGeometry(QRect(20, 380, 191, 31));
-        label_7->setFont(font);
-        qvtkWidget = new QVTKWidget(centralWidget);
-        qvtkWidget->setObjectName(QStringLiteral("qvtkWidget"));
-        qvtkWidget->setGeometry(QRect(290, 200, 640, 480));
-        MainWindow->setCentralWidget(centralWidget);
-        mainToolBar = new QToolBar(MainWindow);
-        mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
-        MainWindow->addToolBar(Qt::TopToolBarArea, mainToolBar);
-        statusBar = new QStatusBar(MainWindow);
-        statusBar->setObjectName(QStringLiteral("statusBar"));
-        MainWindow->setStatusBar(statusBar);
-        menuBar = new QMenuBar(MainWindow);
-        menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 991, 21));
-        MainWindow->setMenuBar(menuBar);
+        label_7->setGeometry(QRect(10, 30, 21, 20));
+        label_7->setLayoutDirection(Qt::LeftToRight);
+        label_8 = new QLabel(groupBox_5);
+        label_8->setObjectName(QStringLiteral("label_8"));
+        label_8->setGeometry(QRect(100, 30, 21, 20));
+        label_8->setLayoutDirection(Qt::LeftToRight);
+        yRange_3 = new QDoubleSpinBox(groupBox_5);
+        yRange_3->setObjectName(QStringLiteral("yRange_3"));
+        yRange_3->setGeometry(QRect(120, 30, 62, 22));
+        zRange_3 = new QDoubleSpinBox(groupBox_5);
+        zRange_3->setObjectName(QStringLiteral("zRange_3"));
+        zRange_3->setGeometry(QRect(210, 30, 62, 22));
+        label_9 = new QLabel(groupBox_5);
+        label_9->setObjectName(QStringLiteral("label_9"));
+        label_9->setGeometry(QRect(190, 30, 21, 20));
+        label_9->setLayoutDirection(Qt::LeftToRight);
+        groupBox_6 = new QGroupBox(dockWidgetContents_8);
+        groupBox_6->setObjectName(QStringLiteral("groupBox_6"));
+        groupBox_6->setGeometry(QRect(300, 0, 311, 61));
+        checkBox_7 = new QCheckBox(groupBox_6);
+        checkBox_7->setObjectName(QStringLiteral("checkBox_7"));
+        checkBox_7->setGeometry(QRect(10, 30, 101, 20));
+        checkBox_8 = new QCheckBox(groupBox_6);
+        checkBox_8->setObjectName(QStringLiteral("checkBox_8"));
+        checkBox_8->setGeometry(QRect(220, 30, 111, 20));
+        checkBox_9 = new QCheckBox(groupBox_6);
+        checkBox_9->setObjectName(QStringLiteral("checkBox_9"));
+        checkBox_9->setGeometry(QRect(120, 30, 91, 20));
+        dockWidget_4->setWidget(dockWidgetContents_8);
+        MainWindow->addDockWidget(static_cast<Qt::DockWidgetArea>(8), dockWidget_4);
+
+        menuBar->addAction(menuFile->menuAction());
+        menuBar->addAction(menuEdit->menuAction());
+        menuBar->addAction(menuView->menuAction());
+        menuBar->addAction(menuWindow->menuAction());
+        menuBar->addAction(menuHelp->menuAction());
+        mainToolBar->addAction(actionNew);
+        mainToolBar->addAction(actionOpen);
+        mainToolBar->addAction(actionSave);
+        mainToolBar->addSeparator();
+        mainToolBar->addAction(actionStart_capture);
 
         retranslateUi(MainWindow);
-
-        tabWidget->setCurrentIndex(0);
-
 
         QMetaObject::connectSlotsByName(MainWindow);
     } // setupUi
@@ -322,34 +325,38 @@ public:
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
         actionNew->setText(QApplication::translate("MainWindow", "New", 0));
-        actionRange->setText(QApplication::translate("MainWindow", "Range", 0));
-        groupBox_4->setTitle(QApplication::translate("MainWindow", "Project", 0));
-        newButton->setText(QApplication::translate("MainWindow", "New", 0));
-        openButton->setText(QApplication::translate("MainWindow", "Open", 0));
-        openButton_2->setText(QApplication::translate("MainWindow", "Save", 0));
-        groupBox_5->setTitle(QApplication::translate("MainWindow", "Figure", 0));
-        openButton_3->setText(QApplication::translate("MainWindow", "Capture", 0));
-        tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("MainWindow", "File", 0));
-        groupBox->setTitle(QApplication::translate("MainWindow", "Range", 0));
-        label->setText(QApplication::translate("MainWindow", "  X", 0));
-        label_2->setText(QApplication::translate("MainWindow", "  Y", 0));
-        label_3->setText(QApplication::translate("MainWindow", "  Z", 0));
-        groupBox_3->setTitle(QApplication::translate("MainWindow", "Geometry", 0));
-        checkBox->setText(QApplication::translate("MainWindow", "Background grid", 0));
-        checkBox_2->setText(QApplication::translate("MainWindow", "Vertex points", 0));
-        checkBox_3->setText(QApplication::translate("MainWindow", "Bounding box", 0));
-        tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("MainWindow", "Parameters", 0));
-        groupBox_2->setTitle(QApplication::translate("MainWindow", "3D Compositing", 0));
+#ifndef QT_NO_TOOLTIP
+        actionNew->setToolTip(QApplication::translate("MainWindow", "Create new model", 0));
+#endif // QT_NO_TOOLTIP
+        actionOpen->setText(QApplication::translate("MainWindow", "Open", 0));
+#ifndef QT_NO_TOOLTIP
+        actionOpen->setToolTip(QApplication::translate("MainWindow", "Open external model", 0));
+#endif // QT_NO_TOOLTIP
+        actionSave->setText(QApplication::translate("MainWindow", "Save", 0));
+#ifndef QT_NO_TOOLTIP
+        actionSave->setToolTip(QApplication::translate("MainWindow", "Save current model", 0));
+#endif // QT_NO_TOOLTIP
+        actionStart_capture->setText(QApplication::translate("MainWindow", "Start capture", 0));
+#ifndef QT_NO_TOOLTIP
+        actionStart_capture->setToolTip(QApplication::translate("MainWindow", "Starts capturing from Kinect", 0));
+#endif // QT_NO_TOOLTIP
+        menuFile->setTitle(QApplication::translate("MainWindow", "File", 0));
+        menuEdit->setTitle(QApplication::translate("MainWindow", "Edit", 0));
+        menuView->setTitle(QApplication::translate("MainWindow", "View", 0));
+        menuWindow->setTitle(QApplication::translate("MainWindow", "Window", 0));
+        menuHelp->setTitle(QApplication::translate("MainWindow", "Help", 0));
         newButton_3->setText(QApplication::translate("MainWindow", "Watertight", 0));
         newButton_2->setText(QApplication::translate("MainWindow", "Points", 0));
         newButton_4->setText(QApplication::translate("MainWindow", "Wireframe", 0));
         newButton_5->setText(QApplication::translate("MainWindow", "Flat lines", 0));
-        tabWidget->setTabText(tabWidget->indexOf(tab_3), QApplication::translate("MainWindow", "Process", 0));
-        label_4->setText(QApplication::translate("MainWindow", "Green component", 0));
-        label_5->setText(QApplication::translate("MainWindow", "Point size", 0));
-        label_6->setText(QApplication::translate("MainWindow", "Red component", 0));
-        pushButton_random->setText(QApplication::translate("MainWindow", "Random colors", 0));
-        label_7->setText(QApplication::translate("MainWindow", "Blue component", 0));
+        groupBox_5->setTitle(QApplication::translate("MainWindow", "Depth range", 0));
+        label_7->setText(QApplication::translate("MainWindow", "  X", 0));
+        label_8->setText(QApplication::translate("MainWindow", "  Y", 0));
+        label_9->setText(QApplication::translate("MainWindow", "  Z", 0));
+        groupBox_6->setTitle(QApplication::translate("MainWindow", "Geometry", 0));
+        checkBox_7->setText(QApplication::translate("MainWindow", "Background grid", 0));
+        checkBox_8->setText(QApplication::translate("MainWindow", "Vertex points", 0));
+        checkBox_9->setText(QApplication::translate("MainWindow", "Bounding box", 0));
     } // retranslateUi
 
 };
